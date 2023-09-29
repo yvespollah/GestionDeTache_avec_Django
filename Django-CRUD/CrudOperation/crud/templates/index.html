@@ -1,0 +1,101 @@
+<!-- ===================================================YVES PROGRAMMEUR ==================================================== -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+       <!-- Bootstrap offline CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- fant-awesome -->
+    <script src="{% static './js/all.js' %}"></script>
+    <!-- bootsrapt icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+   <!--main css-->
+   <link rel="stylesheet" type="text/css" href="{% static './css/main.css' %}">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crud-operation</title>
+</head>
+<style>
+    body{
+        background: rgb(211, 241, 233);
+    }
+</style>
+<body>
+   <section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          
+            <div class="card-body py-4 px-4 px-md-5">
+            
+              <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
+                <h1 style="text-align: center;">Crud Operation</h1>
+              </p>
+
+
+                                                  <!-- debut de zone de tache -->
+               <!-- reversed cest pour que les tache saffiche a l'ordre inverse c'est a dir on affiche le denier a entre dans la liste au premier -->                     
+            <table class="table table-striped">
+        <thead class="thead bg-success text-white">
+            <tr>
+                <th scope="col-md-2">Tache</th>
+                
+                <th scope="col-md-2">Action</th>
+             
+            </tr>
+        </thead>
+        
+        
+        {% for data in taches reversed %}
+          
+            <tr>
+               
+                <td>{{ data.tache| title }}</td>
+                
+                <td align="right"> 
+                      <a href="modifier/{{data.id}}" <i class="bi bi-pencil text-info"></i></a>
+                      <a href="supprimer/{{data.id}}" <i class="bi bi-trash-fill text-danger"></i></a>
+                     
+                </td>
+                
+           </tr>
+           {% endfor %}
+    
+</table>
+
+  <hr class="my-4"><br>
+
+   
+              <div class="pb-2">
+                <div class="card">
+                  <div class="card-body">
+                      <form class=" align-items-center" action="." method="POST">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button type="submit" class="btn btn-success">Ajouter</button>
+                      </form>  
+                  </div>
+                </div>
+              </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+    <script src="{% static './js/jquery-3.6.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static './js/bootstrap.bundle.min.js' %}"></script>
+
+    
+</body>
+</html>
